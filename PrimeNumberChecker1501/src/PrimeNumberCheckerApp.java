@@ -13,7 +13,7 @@ public class PrimeNumberCheckerApp {
 	{
 		
 		ArrayList<Integer> factors = new ArrayList<>();
-		int aNumber = Console.getInt("Please enter a number between 1 and 5000");
+		int aNumber = Console.getInt("Please enter a number between 1 and 5000", 1, 5000);
 		boolean isprime = true;
 		 for (int i = 2; i <= Math.sqrt(aNumber); i++) {
 		        if (aNumber % i == 0) 
@@ -43,7 +43,7 @@ public class PrimeNumberCheckerApp {
 		        	System.out.println();
 		        }		
 		 System.out.println();
-		 choice = Console.getString("Try again?");	
+		 choice = Console.getString("Try again?","y","n");	
 	}
 	
 	

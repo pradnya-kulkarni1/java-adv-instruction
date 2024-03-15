@@ -10,7 +10,27 @@ public class Console {
         System.out.print(prompt);
         return sc.nextLine();  
     }
-
+public static String getString(String prompt, String str1, String str2) {
+    	
+    	String str = " ";
+    	boolean success = false;
+    	
+    	while(!success) {
+    		str = getString(prompt);
+    		if ((str.equalsIgnoreCase(str1)) || (str.equalsIgnoreCase(str2)))
+    		{
+    			success = true;
+    			
+    		}
+    		else {
+    			System.out.println("Invalid response. Please enter "+str1+" or "+ str2+".");
+    		}
+    	
+    	
+    	}
+    	return str;
+    	
+    }
     public static int getInt(String prompt) {
         while (true) {
             System.out.print(prompt);
