@@ -34,20 +34,41 @@ public class WizardInventoryApp {
 				
 				switch(command) {
 				case COMMAND_SHOW:
-						System.out.println("Show all items");
+						{
+							System.out.println("Show all items");
+						
 						for (String i:itemsList) { System.out.println((itemsList.indexOf(i)+1)+ " "+ i);}
 						break;
+						}
 				case COMMAND_GRAB:
-					System.out.println("Grab an item");
+					if(itemsList.size()==4) { System.out.println("You can't carry any more items. Drop Something first"); break;}
+					else {
+						System.out.println("Grab an item");
+					
 					String name = Console.getString("Name");
 					itemsList.add(name);
+					System.out.println(name+" was added");
 					break;
+					}
 				case COMMAND_EDIT:
-					System.out.println("Edit an item");
+				{
+					int itemToEdit = Console.getInt("Number");
+					String nameOfItem = Console.getString("Updated name ");
+					itemsList.set((itemToEdit-1), nameOfItem);
+					System.out.println("Item number "+itemToEdit +" was updated.");
+					
 					break;
+				}
 				case COMMAND_DROP:
-					System.out.println("Drop an item");
-					break;
+					{
+						int itemToDrop = Console.getInt("Number");
+						String nameOfItem = itemsList.get(itemToDrop-1);
+						itemsList.remove(nameOfItem);
+						System.out.println(nameOfItem+" was dropped.");
+						
+						break;
+					}
+					
 				case COMMAND_EXIT:
 					System.out.println("Exit app:");
 					
