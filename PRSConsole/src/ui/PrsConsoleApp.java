@@ -22,13 +22,6 @@ public class PrsConsoleApp {
 	
 	public static void main(String[] args) {
 		
-		int uid;
-		 String uname;
-		 String upassword;
-		 String fname;
-		 String lname;
-		 String uphone;
-		 String uemail;
 		
 	System.out.println("Hello PRS");
 	
@@ -64,27 +57,24 @@ public class PrsConsoleApp {
 	while(!command.equalsIgnoreCase("COMMAND_EXIT"))
 	{	
 		
-		System.out.println("==========================");
-		System.out.println("User details");
-		command = Console.getString("PLease enter show / add / get / exit");
+		System.out.println("=========================="); // Command Menu
+		System.out.println("Command Menu");
+		System.out.println("show - Show all users");
+		System.out.println("add -  Add all users");
+		System.out.println("get -  Get all users");
+		System.out.println("exit - Exit");
+		command = Console.getString("Please enter option");
+		
+		
 		switch(command)
 		{
 				case "show": { 
-								for (User u: users) {
-									System.out.println(u); }
+								showUsers(users);
 								break;
 					 		 }
 				
 				case "add" : {
-								uid = Console.getInt("Please enter UserID :");
-								uname = Console.getString("Please enter User name :");
-								upassword = Console.getString("Enter User password :");
-								fname = Console.getString("Enter User First name :");
-								lname = Console.getString("Enter User Last name :");
-								uphone = Console.getString("Enter User phone :");
-								uemail = Console.getString("Enter User email :");
-								User ua = new User(uid,uname,upassword, fname, lname, uphone, uemail,false,false);
-								users.add(ua);
+								addUser(users);
 								break;
 								
 							}
@@ -94,12 +84,13 @@ public class PrsConsoleApp {
 								}
 				case "get" :
 							{
-								int userId = Console.getInt("Enter userId");
-								for(User a: users) {
-									if (a.getId() == userId ) System.out.println(a);
-								}
+								getUser(users);
 								break;
 					
+							}
+				default :
+							{ System.out.println("Invalid command");
+								break;
 							}
 				}
 	
@@ -108,5 +99,45 @@ public class PrsConsoleApp {
 	System.out.println("bye");
 	}
 
+	private static void showUsers(List<User> users) {
+	
+		System.out.println("List of Users");
+		System.out.println("=========================");
+		for (User u: users) {
+			System.out.println(u); }
+	}
+	private static void addUser(List<User> users)
+	{
+		int uid;
+		 String uname;
+		 String upassword;
+		 String fname;
+		 String lname;
+		 String uphone;
+		 String uemail;
+		 
+		System.out.println("Add User");
+		System.out.println("=========================");
+		uid = Console.getInt("Please enter UserID :");
+		uname = Console.getString("Please enter User name :");
+		upassword = Console.getString("Enter User password :");
+		fname = Console.getString("Enter User First name :");
+		lname = Console.getString("Enter User Last name :");
+		uphone = Console.getString("Enter User phone :");
+		uemail = Console.getString("Enter User email :");
+		boolean rvw = false;
+		boolean adm = false;
+		User ua = new User(uid,uname,upassword, fname, lname, uphone, uemail,rvw,adm);
+		users.add(ua);
+		
+	}
+	private static void getUser(List<User> users) {
+		
+		int userId = Console.getInt("Enter userId");
+		for(User a: users) {
+			if (a.getId() == userId ) { System.out.println(a);}
+			else System.out.println("Invalid Id");
+		}
+	}
 	
 }
