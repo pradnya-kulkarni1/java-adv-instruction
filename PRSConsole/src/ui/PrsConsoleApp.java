@@ -56,14 +56,7 @@ public class PrsConsoleApp {
 	
 	while(!command.equalsIgnoreCase("COMMAND_EXIT"))
 	{	
-		
-		System.out.println("=========================="); // Command Menu
-		System.out.println("Command Menu");
-		System.out.println("show - Show all users");
-		System.out.println("add -  Add all users");
-		System.out.println("get -  Get all users");
-		System.out.println("exit - Exit");
-		command = Console.getString("Please enter option");
+		command = commandMenu();
 		
 		
 		switch(command)
@@ -84,7 +77,7 @@ public class PrsConsoleApp {
 								}
 				case "get" :
 							{
-								getUser(users);
+								getUser(users);// u can add if statement here to check valid userID
 								break;
 					
 							}
@@ -99,9 +92,22 @@ public class PrsConsoleApp {
 	System.out.println("bye");
 	}
 
+	private static String commandMenu() {
+		String command = "";
+
+		System.out.println("\n=========================="); // Command Menu
+		System.out.println("Command Menu");
+		System.out.println("show - Show all users");
+		System.out.println("add -  Add all users");
+		System.out.println("get -  Get all users");
+		System.out.println("exit - Exit");
+		command = Console.getString("Please enter option");
+		
+		return command;
+	}
 	private static void showUsers(List<User> users) {
 	
-		System.out.println("List of Users");
+		System.out.println("\nList of Users");
 		System.out.println("=========================");
 		for (User u: users) {
 			System.out.println(u); }
@@ -116,7 +122,7 @@ public class PrsConsoleApp {
 		 String uphone;
 		 String uemail;
 		 
-		System.out.println("Add User");
+		System.out.println("\nAdd User");
 		System.out.println("=========================");
 		uid = Console.getInt("Please enter UserID :");
 		uname = Console.getString("Please enter User name :");
@@ -136,7 +142,7 @@ public class PrsConsoleApp {
 		int userId = Console.getInt("Enter userId");
 		for(User a: users) {
 			if (a.getId() == userId ) { System.out.println(a);}
-			else System.out.println("Invalid Id");
+			
 		}
 	}
 	
