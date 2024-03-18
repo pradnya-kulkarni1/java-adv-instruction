@@ -52,21 +52,27 @@ public class WizardInventoryApp {
 					}
 				case COMMAND_EDIT:
 				{
-					int itemToEdit = Console.getInt("Number");
-					String nameOfItem = Console.getString("Updated name ");
-					itemsList.set((itemToEdit-1), nameOfItem);
-					System.out.println("Item number "+itemToEdit +" was updated.");
-					
+					int itemToEdit = itemExists(itemsList);
+					if(itemToEdit !=0 ) {
+						String nameOfItem = Console.getString("Updated name ");
+						itemsList.set((itemToEdit-1), nameOfItem);
+						System.out.println("Item number "+itemToEdit +" was updated.");
 					break;
+					}
+					else { System.out.println("Error - item doesn't exist."); break;}
 				}
 				case COMMAND_DROP:
 					{
-						int itemToDrop = Console.getInt("Number");
+						int itemToDrop = itemExists(itemsList);
+						
+						// validate that the item exists in that position
+						if(itemToDrop !=0) {
 						String nameOfItem = itemsList.get(itemToDrop-1);
 						itemsList.remove(nameOfItem);
 						System.out.println(nameOfItem+" was dropped.");
-						
 						break;
+						} else {System.out.println("Item does not exist"); break;}
+						
 					}
 					
 				case COMMAND_EXIT:
@@ -80,6 +86,15 @@ public class WizardInventoryApp {
 		}
 		
 		System.out.println("Bye");
+	}
+	
+	private static int itemExists(List<String> items)
+	{
+		int itemNbr = 0;
+		itemNbr = Console.getInt("Enter item number", 0 ,items.size() +1);
+		return itemNbr;
+		
+		
 	}
 
 }
