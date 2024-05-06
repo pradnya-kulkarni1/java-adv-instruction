@@ -78,10 +78,10 @@ public class PrsConsoleJdbcApp {
 				Vendor v = createVendor();
 				
 				if (VendorDb.add(v)) {
-					System.out.println("Success - user added.");
+					System.out.println("Success - Vendor added.");
 				}
 				else {
-					System.out.println("Error adding user");
+					System.out.println("Error adding vendor");
 				}
 			choice = Console.getString("Continue? y/n","y","n");	
 		}
